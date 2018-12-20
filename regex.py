@@ -29,4 +29,9 @@ emailRegex = re.compile(r'''(
 )''', re.VERBOSE)
 
 # Returns true if the password is strong, false if not
+# At least 8 characters long
+# Contains both upper and lower case
+# Has at least 1 digit
 def strongPassword(password):
+    characterLengthRegex = re.compile(r'\S'{8,})
+    upperLowerRegex = re.compile(r'[a-z]')
