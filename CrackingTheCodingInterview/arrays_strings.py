@@ -48,3 +48,23 @@ def arePermutationsOfEachOther(s1, s2):
 # print(arePermutationsOfEachOther("turtle", "cattle"))   # False
 # print(arePermutationsOfEachOther("billy", "libby"))     # False
 # print(arePermutationsOfEachOther("dylan", "ynald"))     # True
+
+# 1.5
+def stringCompression(originalString):
+    charArray = []
+    i = 0
+    while i < len(originalString):
+        myChar = originalString[i]
+        count = 1
+        j = i + 1
+        while j < len(originalString) and originalString[j] == myChar:
+            count += 1
+            j += 1
+
+        i = j
+        charArray.append("%s%d" % (myChar, count))
+
+    return "".join(charArray)
+
+
+# print(stringCompression("aabcccccaa"))
