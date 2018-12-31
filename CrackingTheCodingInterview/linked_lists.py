@@ -12,6 +12,7 @@ class Node:
         while (n.nextNode != None):
             n = n.nextNode
         n.nextNode = endNode
+        return endNode
 
     def printLinkedList(self):
         dataList = [str(self.data)]
@@ -29,6 +30,9 @@ class Node:
 
     def setNextNode(self, newNode):
         self.nextNode = newNode
+
+    def setData(self, newData):
+        self.data = newData
 
 
 # 1.1 Remove duplicates without a secondary data structure
@@ -55,7 +59,7 @@ startingLink.appendToTail(15)
 startingLink.appendToTail(16)
 startingLink.appendToTail(17)
 startingLink.appendToTail(18)
-startingLink.appendToTail(19)
+nodeToRemove = startingLink.appendToTail(19)
 startingLink.appendToTail(20)
 startingLink.appendToTail(21)
 startingLink.appendToTail(22)
@@ -92,4 +96,18 @@ def findTheKthFromTheLast(startingNode, k):
     return current
 
 
-print(findTheKthFromTheLast(startingLink, 5).getData())
+# print(findTheKthFromTheLast(startingLink, 5).getData())
+
+# 1.3 Delete an element from the middle of a singly linekd list with only access to that one element
+
+def removeElementFromLinkedList(linkToDelete):
+    if (linkToDelete == None or linkToDelete.getNext() == None):
+        return None
+    nextLink = linkToDelete.getNext()
+    linkToDelete.setNextNode(nextLink.getNext())
+    linkToDelete.setData(nextLink.getData())
+
+
+startingLink.printLinkedList()
+removeElementFromLinkedList(nodeToRemove)
+startingLink.printLinkedList()
