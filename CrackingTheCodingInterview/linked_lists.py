@@ -27,6 +27,24 @@ class Node:
     def getNext(self):
         return self.nextNode
 
+    def setNextNode(self, newNode):
+        self.nextNode = newNode
+
+
+def removeDuplicates(startingNode):
+    currentNode = startingNode
+    while (currentNode != None and currentNode.getNext() != None):
+        valueToCheck = currentNode.getData()
+        runnerNode = currentNode
+        while (runnerNode.getNext() != None):
+            if (runnerNode.getNext().getData() == valueToCheck):
+                runnerNode.setNextNode(runnerNode.getNext().getNext())
+            else:
+                runnerNode = runnerNode.getNext()
+        currentNode = currentNode.getNext()
+
+    startingNode.printLinkedList()
+
 
 startingLink = Node(11)
 startingLink.appendToTail(12)
@@ -43,11 +61,5 @@ startingLink.appendToTail(16)
 
 print("starting list")
 startingLink.printLinkedList()
-
-
-def removeDuplicates(startingNode):
-    currentNode = startingNode
-    while (currentNode.nextNode != None):
-        currentValue = currentNode.getData()
-
-        # Search rest of the list removing any elements that match
+print("ending list")
+removeDuplicates(startingLink)
