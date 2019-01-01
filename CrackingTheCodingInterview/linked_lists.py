@@ -34,6 +34,14 @@ class Node:
     def setData(self, newData):
         self.data = newData
 
+    def getLength(self):
+        i = 1
+        node = self
+        while (node.getNext() != None):
+            i = i + 1
+            node = node.getNext()
+        return i
+
 
 # 1.1 Remove duplicates without a secondary data structure
 def removeDuplicates(startingNode):
@@ -68,6 +76,7 @@ startingLink.appendToTail(24)
 startingLink.appendToTail(25)
 startingLink.appendToTail(26)
 startingLink.appendToTail(27)
+
 
 # print("starting list")
 # startingLink.printLinkedList()
@@ -108,6 +117,61 @@ def removeElementFromLinkedList(linkToDelete):
     linkToDelete.setData(nextLink.getData())
 
 
-startingLink.printLinkedList()
-removeElementFromLinkedList(nodeToRemove)
-startingLink.printLinkedList()
+# startingLink.printLinkedList()
+# removeElementFromLinkedList(nodeToRemove)
+# startingLink.printLinkedList()
+
+# 1.4 Write a program that will partition a linked list around a value X such that all values less than X come before all values greater than or equal to X
+
+def linkedListPartition(startingNode, x):
+    print("Partitioning around %d" % (x))
+    beforeStart, beforeEnd, afterStart, afterEnd = None, None, None, None
+
+    node = startingNode
+    i = 1
+    while (node != None):
+        nextNode = node.getNext()
+        node.setNextNode(None)
+        if (node.getData() < x):
+            if (beforeStart == None):
+                beforeStart = node
+                beforeEnd = beforeStart
+            else:
+                beforeEnd.setNextNode(node)
+                beforeEnd = node
+        else:
+            if (afterStart == None):
+                afterStart = node
+                afterEnd = afterStart
+            else:
+                afterEnd.setNextNode(node)
+                afterEnd = node
+        node = nextNode
+
+    if (beforeStart == None):
+        return afterStart
+
+    beforeEnd.setNextNode(afterStart)
+    return beforeStart
+
+
+startingLink.appendToTail(12)
+startingLink.appendToTail(13)
+startingLink.appendToTail(14)
+startingLink.appendToTail(15)
+startingLink.appendToTail(16)
+startingLink.appendToTail(17)
+startingLink.appendToTail(18)
+startingLink.appendToTail(19)
+startingLink.appendToTail(20)
+startingLink.appendToTail(21)
+startingLink.appendToTail(22)
+startingLink.appendToTail(23)
+startingLink.appendToTail(24)
+startingLink.appendToTail(25)
+startingLink.appendToTail(26)
+startingLink.appendToTail(27)
+
+# startingLink.printLinkedList()
+# newList = linkedListPartition(startingLink, 20)
+# newList.printLinkedList()
