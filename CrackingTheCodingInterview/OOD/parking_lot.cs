@@ -6,18 +6,18 @@
 // Is there a restriction on the kind of vehicles that can park here?
 // Does Valet have their own designated spots? If so, do those spots factor in to the publics perception of full/empty?
 
-public class ParkingLot
-{
-
-}
-
-
 public enum SpotType
 {
     Regular,
     Handicapped,
     Compact
 }
+
+public class ParkingLot
+{
+
+}
+
 public class ParkingSpot
 {
     public SpotType Type { get; set; }
@@ -27,4 +27,17 @@ public class ParkingSpot
     {
         return this._isEmpty;
     }
+
+    public void ParkCar(SpotType spotType = SpotType.Regular) {
+        if (this._isEmpty) {
+            throw new Exception("Unable to park in spot that is already occupied");
+        }
+        if (this.Type != SpotType.Regular || this.Type != spotType) {
+            throw new Exception("Cannot park in designated spot");
+        }
+
+        this._isEmpty = false;
+    }
+
+    public void 
 }
