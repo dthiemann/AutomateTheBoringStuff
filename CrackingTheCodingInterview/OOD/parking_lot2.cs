@@ -125,6 +125,26 @@ public class ParkingSpot
         return SpotVehicleFitCalculator.CanFit(this, v);
     }
 
+    public bool ParkVehicle(Vehicle v)
+    {
+        if (CanFitVehicle(v))
+        {
+            this.parkedVehicle = v;
+            this.parkedVehicle.ParkVehicleInSpot(this);
+            return true;
+        }
+        return false;
+    }
+
+    public void ClearVehicle()
+    {
+        if (parkedVehicle != null)
+        {
+            parkedVehicle.ClearParkingSpots();
+        }
+        parkedVehicle = null;
+    }
+
     public SpotSize GetSpotSize()
     {
         return this.size;
