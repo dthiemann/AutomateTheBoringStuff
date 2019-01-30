@@ -153,6 +153,35 @@ public class ParkingSpot
 
 public class Floor
 {
+    protected int floorNumber { get; set; }
+    protected const int NUMBER_ROWS = 10;
+    protected const int NUMBER_SPOTS_PER_ROW = 20;
+
+    protected int availableSpots { get; set; }
+
+    protected List<ParkingSpot> ParkingSpots;
+
+    public Floor(int floorNumber)
+    {
+        this.floorNumber = floorNumber;
+        for (var i = 0; i < NUMBER_ROWS; i++)
+        {
+            for (var j = 0; j < NUMBER_SPOTS_PER_ROW; j++)
+            {
+                ParkingSpots.Add(new ParkingSpot(floorNumber, i, j, SpotSize.Compact));
+            }
+        }
+    }
+
+    public bool ParkVehicle(Vehicle v)
+    {
+        Console.WriteLine("Finds where to park the car then calls the corresponding methods in the Spot");
+    }
+
+    public GetVehicleInSpot(int row, int spotNumber)
+    {
+        return ParkingSpots[row * NUMBER_SPOTS_PER_ROW + j];
+    }
 
 }
 
