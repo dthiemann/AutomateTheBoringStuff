@@ -187,5 +187,19 @@ public class Floor
 
 public class ParkingGarage
 {
+    protected const int NUMBER_OF_FLOORS = 5;
+    protected string name;
+    protected string address;
 
+    protected List<Floor> floors;
+
+    public ParkingGarage(string name, string address)
+    {
+        this.name = name;
+        this.address = address;
+        for (var i = 0; i < NUMBER_OF_FLOORS; i++)
+        {
+            floors.Add(new Floor(i));
+        }
+    }
 }
