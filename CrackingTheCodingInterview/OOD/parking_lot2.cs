@@ -150,3 +150,13 @@ public class ParkingSpot
         return this.size;
     }
 }
+
+public class Floor
+{
+
+}
+
+public class ParkingGarage
+{
+
+}
