@@ -46,7 +46,10 @@ public abstract class Vehicle
         this.plateNumber = plateNumber;
     }
 
-    public abstract bool CanFitInSpot(ParkingSpot spot);
+    public bool CanFitInSpot(ParkingSpot spot)
+    {
+        return SpotVehicleFitCalculator.CanFit(spot, this);
+    }
 
     // Returns true if it parked, false otherwise
     public bool ParkVehicleInSpot(ParkingSpot spot)
@@ -61,6 +64,36 @@ public abstract class Vehicle
     public void ClearParkingSpots()
     {
         this.parkingSpots.Clear();
+    }
+}
+
+public class Motorcycle : Vehicle
+{
+    public Motorcycle(string plateNumber)
+    {
+        super(plateNumber);
+        this.type = VehicleType.Motorcycle;
+        this.spotsNeeded = 1;
+    }
+}
+
+public class Car : Vehicle
+{
+    public Car(string plateNumber)
+    {
+        super(plateNumber);
+        this.type = VehicleType.Car;
+        this.spotsNeeded = 1;
+    }
+}
+
+public class Bus : Vehicle
+{
+    public Bus(string plateNumber)
+    {
+        super(plateNumber);
+        this.type = VehicleType.Bus;
+        this.spotsNeeded = 5;
     }
 }
 
@@ -89,8 +122,7 @@ public class ParkingSpot
     // only checks size (not if more than one is needed)
     public bool CanFitVehicle(Vehicle v)
     {
-        var vehicleType = v.GetVehicleType();
-        if ( )
+        return SpotVehicleFitCalculator.CanFit(this, v);
     }
 
     public SpotSize GetSpotSize()
